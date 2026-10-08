@@ -7,231 +7,476 @@
 <title>Surprise for Jesiii 💗</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-html, body {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    font-family: Arial, sans-serif;
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    font-family:Georgia,"Times New Roman",serif;
 }
 
-body {
-    background-image: url("file_0000000089cc8208beb6b4955f2e9ede.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+body{
+    background:#000 url("file_0000000089cc8208beb6b4955f2e9ede.png")
+    center center / cover no-repeat fixed;
 }
 
-/* Dark transparent layer */
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.18);
-    z-index: 0;
+
+/* DARK OVERLAY */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.15);
+    z-index:0;
 }
 
-/* Main screen */
-.main {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    height: 100vh;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+/* MAIN SCREEN */
+
+.main{
+    position:relative;
+    width:100%;
+    height:100vh;
+    z-index:2;
 }
 
-/* Website title */
-.title {
-    position: absolute;
-    top: 10%;
-    width: 100%;
-    text-align: center;
 
-    color: white;
-    font-size: clamp(25px, 7vw, 48px);
-    font-weight: 300;
-    letter-spacing: 1px;
+/* TITLE */
+
+.title{
+    position:absolute;
+    top:8%;
+    left:50%;
+    transform:translateX(-50%);
+
+    width:100%;
+
+    text-align:center;
+
+    color:white;
+
+    font-size:clamp(24px,7vw,42px);
+
+    letter-spacing:1px;
 
     text-shadow:
-        0 0 8px rgba(255,255,255,0.7),
-        0 0 18px rgba(255,120,170,0.7);
+        0 0 8px white,
+        0 0 20px rgba(255,100,170,.8);
 }
 
-/* Glowing ring */
-.ring {
-    width: 145px;
-    height: 145px;
 
-    border-radius: 50%;
-    border: 3px solid rgba(255,255,255,0.9);
+/* RING */
+
+.ring{
+    position:absolute;
+
+    left:50%;
+    top:42%;
+
+    transform:translate(-50%,-50%);
+
+    width:120px;
+    height:120px;
+
+    border-radius:50%;
+
+    border:5px solid rgba(255,230,245,.95);
 
     box-shadow:
-        0 0 15px rgba(255,255,255,0.8),
-        0 0 35px rgba(255,90,150,0.7),
-        inset 0 0 25px rgba(255,90,150,0.4);
+        0 0 15px white,
+        0 0 35px rgba(255,120,190,.9),
+        0 0 65px rgba(255,80,170,.5);
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    cursor:pointer;
 
-    cursor: pointer;
-
-    animation: pulse 2s infinite ease-in-out;
+    animation:pulse 2s infinite;
 }
 
-.ring-text {
-    color: white;
-    font-size: 16px;
-    text-align: center;
-    text-shadow: 0 0 10px white;
+.ring::after{
+    content:"✦";
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    color:white;
+
+    font-size:30px;
+
+    text-shadow:0 0 15px white;
 }
 
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-        box-shadow:
-            0 0 15px rgba(255,255,255,0.8),
-            0 0 35px rgba(255,90,150,0.7);
+@keyframes pulse{
+
+    0%,100%{
+        transform:translate(-50%,-50%) scale(1);
     }
 
-    50% {
-        transform: scale(1.08);
-        box-shadow:
-            0 0 25px rgba(255,255,255,1),
-            0 0 55px rgba(255,90,150,0.9);
+    50%{
+        transform:translate(-50%,-50%) scale(1.08);
     }
+
 }
 
-/* Popup */
-.popup {
-    position: fixed;
-    inset: 0;
 
-    background: rgba(0,0,0,0.62);
+/* TAP TEXT */
 
-    display: none;
-    justify-content: center;
-    align-items: center;
+.tap{
+    position:absolute;
 
-    z-index: 10;
+    top:52%;
+    left:50%;
 
-    padding: 20px;
+    transform:translateX(-50%);
+
+    color:white;
+
+    font-size:14px;
+
+    letter-spacing:2px;
+
+    text-shadow:0 2px 10px black;
 }
 
-.popup.active {
-    display: flex;
+
+/* POPUP */
+
+.popup{
+
+    position:fixed;
+
+    inset:0;
+
+    display:none;
+
+    justify-content:center;
+    align-items:center;
+
+    background:rgba(0,0,0,.72);
+
+    z-index:20;
+
+    padding:10px;
 }
 
-/* Popup box */
-.popup-box {
-    width: min(92vw, 430px);
-    max-height: 90vh;
+.popup.active{
+    display:flex;
+}
 
-    border-radius: 25px;
 
-    overflow: hidden;
+/* HEART CONTAINER */
 
-    position: relative;
+.heart-box{
 
-    background: rgba(255,255,255,0.10);
-    backdrop-filter: blur(8px);
+    position:relative;
 
-    border: 1px solid rgba(255,255,255,0.35);
+    width:min(96vw,650px);
+    height:min(94vh,850px);
+
+    overflow:hidden;
+
+    border-radius:28px;
+
+    background:#000;
 
     box-shadow:
-        0 0 30px rgba(255,90,150,0.5),
-        0 0 80px rgba(0,0,0,0.7);
+        0 0 50px rgba(255,80,170,.35),
+        0 20px 80px rgba(0,0,0,.9);
 
-    display: flex;
-    flex-direction: column;
 }
 
-/* Heart video */
-.heart-area {
-    width: 100%;
-    height: 270px;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* REAL HEART VIDEO */
 
-    background: rgba(0,0,0,0.25);
+.heart-video{
+
+    position:absolute;
+
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+
+    background:#000;
+
+    z-index:1;
+
+    filter:
+        brightness(1.15)
+        contrast(1.1)
+        saturate(1.15);
+
 }
 
-.heart-video {
-    width: 100%;
-    height: 100%;
 
-    object-fit: contain;
+/* VERY LIGHT DARK LAYER */
 
-    mix-blend-mode: screen;
+.heart-box::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:2;
+
+    pointer-events:none;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,.08),
+            rgba(0,0,0,.02) 45%,
+            rgba(0,0,0,.18)
+        );
+
 }
 
-/* Message */
-.message {
-    margin: 15px;
 
-    padding: 18px;
+/* MESSAGE ON HEART */
 
-    border-radius: 18px;
+.message{
 
-    background: rgba(105, 70, 85, 0.55);
+    position:absolute;
 
-    color: white;
+    z-index:4;
 
-    font-size: 15px;
-    line-height: 1.7;
+    left:5%;
+    right:5%;
 
-    text-align: left;
+    bottom:4%;
 
-    overflow-y: auto;
+    max-height:62%;
 
-    max-height: 330px;
+    overflow-y:auto;
 
-    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    padding:18px 18px;
+
+    text-align:center;
+
+    color:white;
+
+    font-size:clamp(14px,3.8vw,18px);
+
+    line-height:1.6;
+
+    text-shadow:
+        0 2px 5px rgba(0,0,0,.95),
+        0 0 8px rgba(0,0,0,.7);
+
+
+    /* VERY LIGHT TRANSPARENT GLASS */
+
+    background:rgba(30,10,20,.18);
+
+    border:1px solid rgba(255,255,255,.18);
+
+    border-radius:22px;
+
+    backdrop-filter:blur(2px);
+    -webkit-backdrop-filter:blur(2px);
+
 }
 
-/* Close button */
-.close {
-    position: absolute;
 
-    top: 10px;
-    right: 12px;
+/* HELLO */
 
-    width: 35px;
-    height: 35px;
+.message .hello{
 
-    border-radius: 50%;
+    font-size:clamp(18px,5vw,25px);
 
-    border: none;
+    font-weight:bold;
 
-    background: rgba(0,0,0,0.45);
+    margin-bottom:15px;
 
-    color: white;
+    color:white;
 
-    font-size: 22px;
-
-    cursor: pointer;
-
-    z-index: 20;
 }
 
-.close:hover {
-    background: rgba(255,255,255,0.25);
+
+/* PARAGRAPHS */
+
+.message p{
+
+    margin-bottom:13px;
+
 }
+
+
+/* IMPORTANT LINE */
+
+.highlight{
+
+    display:block;
+
+    margin:16px 0;
+
+    padding:10px 5px;
+
+    font-size:clamp(16px,4.3vw,21px);
+
+    font-style:italic;
+
+    color:white;
+
+    border-top:1px solid rgba(255,255,255,.25);
+
+    border-bottom:1px solid rgba(255,255,255,.25);
+
+}
+
+
+/* SIGNATURE */
+
+.signature{
+
+    margin-top:15px;
+
+    font-size:clamp(17px,4.5vw,23px);
+
+    font-family:cursive;
+
+    color:white;
+
+}
+
+
+/* CLOSE */
+
+.close{
+
+    position:absolute;
+
+    right:12px;
+    top:12px;
+
+    width:42px;
+    height:42px;
+
+    border-radius:50%;
+
+    border:1px solid rgba(255,255,255,.5);
+
+    background:rgba(0,0,0,.4);
+
+    color:white;
+
+    font-size:25px;
+
+    cursor:pointer;
+
+    z-index:10;
+
+}
+
+
+/* SCROLLBAR */
+
+.message::-webkit-scrollbar{
+    width:4px;
+}
+
+.message::-webkit-scrollbar-thumb{
+
+    background:rgba(255,255,255,.45);
+
+    border-radius:10px;
+}
+
+
+/* MOBILE */
+
+@media(max-width:480px){
+
+    .title{
+
+        top:6%;
+
+        font-size:22px;
+
+    }
+
+    .ring{
+
+        width:90px;
+        height:90px;
+
+    }
+
+    .tap{
+
+        top:49%;
+
+        font-size:12px;
+
+    }
+
+    .heart-box{
+
+        width:97vw;
+
+        height:94vh;
+
+        border-radius:22px;
+
+    }
+
+    .message{
+
+        left:4%;
+        right:4%;
+
+        bottom:3%;
+
+        max-height:60%;
+
+        padding:15px 13px;
+
+        font-size:14px;
+
+        line-height:1.55;
+
+        background:rgba(20,5,15,.16);
+
+    }
+
+}
+
+
+/* SMALLER HEIGHT PHONES */
+
+@media(max-height:700px){
+
+    .message{
+
+        max-height:55%;
+
+    }
+
+}
+
 </style>
+
 </head>
 
+
 <body>
+
+
+<!-- MAIN SCREEN -->
 
 <div class="main">
 
@@ -239,107 +484,169 @@ body::before {
         Surprise for Jesiii 💗
     </div>
 
-    <div class="ring" onclick="openPopup()">
-        <div class="ring-text">
-            Tap here ✨
-        </div>
+
+    <div class="ring" onclick="openHeart()"></div>
+
+
+    <div class="tap">
+        ✦ Tap the ring ✦
     </div>
 
 </div>
 
 
-<!-- POPUP -->
 
-<div class="popup" id="popup">
+<!-- HEART POPUP -->
 
-    <div class="popup-box">
+<div class="popup" id="heartPopup">
 
-        <button class="close" onclick="closePopup()">×</button>
+    <div class="heart-box">
 
-        <div class="heart-area">
 
-            <video
-                class="heart-video"
-                id="heartVideo"
-                src="realistic-heart.mp4"
-                autoplay
-                muted
-                loop
-                playsinline
-                preload="auto">
-            </video>
+        <button class="close" onclick="closeHeart()">
+            ×
+        </button>
 
-        </div>
+
+        <!-- SAME OLD HEART VIDEO -->
+
+        <video
+            class="heart-video"
+            id="heartVideo"
+            src="realistic-heart.mp4"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto">
+        </video>
+
+
+
+        <!-- TEXT OVER HEART -->
 
         <div class="message">
 
-            Hello my "APNI" Supercalifraglisticexpelodics✨🫶🏻✨,
+            <div class="hello">
 
-            <br><br>
+                Hello my "APNI"<br>
 
-            Mujhe pata hai, mai tumhe khush nhi rakh pata huu,
-            mujhe ye bhi pata hai ki meri habits ki wajah se tumhe
-            bhut baar hurt hota hai.
+                Supercalifraglisticexpelodics ✨🫶🏻✨
 
-            <br><br>
+            </div>
 
-            Aur iske liye mujhe tum maaf kar sako to please kar dena.
 
-            <br><br>
+            <p>
 
-            But kasam se bata rha huu, mai hamesha tumhara accha hii
-            chahta huu, tum bass khush rahoo, aur uss khushi ka yek
-            karan mai bhi ban saku, bass itna hi chahta huuu..
+                Mujhe pata hai, mai tumhe khush nhi rakh pata huu,
+                mujhe ye bhi pata hai ki meri habits ki wajah se
+                tumhe bhut baar hurt hota hai.
 
-            <br><br>
+            </p>
 
-            Ummid h tum meri sari galtiyoo aur bad habits k liye
-            mujhe maaf kar dogii.
 
-            <br><br>
+            <p>
 
-            “Mai hamesha,, thume kush dekhna hi nhi balki kush
-            rakhna bhi chahta huuu...🫠🙂.”
+                Aur iske liye mujhe tum maaf kar sako to please
+                kar dena.
 
-            <br><br>
+            </p>
 
-            Yakeen hai tum kabhi iss baat ko jaroor samajh jaoogi🙂
 
-            <br><br>
+            <p>
 
-            <b>A Confession note from your 'GADHAA' 🫠</b>
+                But kasam se bata rha huu, mai hamesha tumhara
+                accha hii chahta huu, tum bass khush rahoo,
+                aur uss khushi ka yek karan mai bhi ban saku,
+                bass itna hi chahta huuu..
+
+            </p>
+
+
+            <p>
+
+                Ummid h tum meri sari galtiyoo aur bad habits k liye
+                mujhe maaf kar dogii.
+
+            </p>
+
+
+            <span class="highlight">
+
+                “Mai hamesha,, thume kush dekhna hi nhi balki
+                kush rakhna bhi chahta huuu...🫠🙂.”
+
+            </span>
+
+
+            <p>
+
+                Yakeen hai tum kabhi iss baat ko jaroor samajh jaoogi🙂
+
+            </p>
+
+
+            <div class="signature">
+
+                A Confession note from your 'GADHAA' ❤️
+
+            </div>
 
         </div>
+
 
     </div>
 
 </div>
+
 
 
 <script>
 
-function openPopup() {
 
-    document.getElementById("popup").classList.add("active");
+function openHeart(){
 
-    const video = document.getElementById("heartVideo");
+    const popup =
+        document.getElementById("heartPopup");
+
+    const video =
+        document.getElementById("heartVideo");
+
+
+    popup.classList.add("active");
+
 
     video.currentTime = 0;
-    video.play().catch(() => {});
+
+
+    video.play().catch(function(){
+
+        console.log("Video waiting for interaction.");
+
+    });
 
 }
 
-function closePopup() {
 
-    document.getElementById("popup").classList.remove("active");
 
-    const video = document.getElementById("heartVideo");
+function closeHeart(){
+
+    const popup =
+        document.getElementById("heartPopup");
+
+    const video =
+        document.getElementById("heartVideo");
+
+
+    popup.classList.remove("active");
+
 
     video.pause();
 
 }
 
 </script>
+
 
 </body>
 </html>
