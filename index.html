@@ -26,9 +26,6 @@ body{
     center center / cover no-repeat fixed;
 }
 
-
-/* DARK OVERLAY */
-
 body::before{
     content:"";
     position:fixed;
@@ -174,7 +171,7 @@ body::before{
 }
 
 
-/* HEART CONTAINER */
+/* HEART BOX */
 
 .heart-box{
 
@@ -192,11 +189,10 @@ body::before{
     box-shadow:
         0 0 50px rgba(255,80,170,.35),
         0 20px 80px rgba(0,0,0,.9);
-
 }
 
 
-/* REAL HEART VIDEO */
+/* ORIGINAL HEART VIDEO */
 
 .heart-video{
 
@@ -217,11 +213,10 @@ body::before{
         brightness(1.15)
         contrast(1.1)
         saturate(1.15);
-
 }
 
 
-/* VERY LIGHT DARK LAYER */
+/* LIGHT OVERLAY */
 
 .heart-box::after{
 
@@ -242,11 +237,10 @@ body::before{
             rgba(0,0,0,.02) 45%,
             rgba(0,0,0,.18)
         );
-
 }
 
 
-/* MESSAGE ON HEART */
+/* TEXT OVER HEART */
 
 .message{
 
@@ -277,8 +271,7 @@ body::before{
         0 2px 5px rgba(0,0,0,.95),
         0 0 8px rgba(0,0,0,.7);
 
-
-    /* VERY LIGHT TRANSPARENT GLASS */
+    /* VERY LIGHT TRANSPARENT BACKGROUND */
 
     background:rgba(30,10,20,.18);
 
@@ -288,7 +281,6 @@ body::before{
 
     backdrop-filter:blur(2px);
     -webkit-backdrop-filter:blur(2px);
-
 }
 
 
@@ -303,7 +295,6 @@ body::before{
     margin-bottom:15px;
 
     color:white;
-
 }
 
 
@@ -316,7 +307,7 @@ body::before{
 }
 
 
-/* IMPORTANT LINE */
+/* HIGHLIGHT */
 
 .highlight{
 
@@ -335,7 +326,6 @@ body::before{
     border-top:1px solid rgba(255,255,255,.25);
 
     border-bottom:1px solid rgba(255,255,255,.25);
-
 }
 
 
@@ -350,11 +340,10 @@ body::before{
     font-family:cursive;
 
     color:white;
-
 }
 
 
-/* CLOSE */
+/* CLOSE BUTTON */
 
 .close{
 
@@ -379,7 +368,6 @@ body::before{
     cursor:pointer;
 
     z-index:10;
-
 }
 
 
@@ -450,13 +438,12 @@ body::before{
         line-height:1.55;
 
         background:rgba(20,5,15,.16);
-
     }
 
 }
 
 
-/* SMALLER HEIGHT PHONES */
+/* SMALL HEIGHT PHONES */
 
 @media(max-height:700px){
 
@@ -472,7 +459,6 @@ body::before{
 
 </head>
 
-
 <body>
 
 
@@ -484,9 +470,7 @@ body::before{
         Surprise for Jesiii 💗
     </div>
 
-
     <div class="ring" onclick="openHeart()"></div>
-
 
     <div class="tap">
         ✦ Tap the ring ✦
@@ -502,18 +486,17 @@ body::before{
 
     <div class="heart-box">
 
-
         <button class="close" onclick="closeHeart()">
             ×
         </button>
 
 
-        <!-- SAME OLD HEART VIDEO -->
+        <!-- YOUR ORIGINAL HEART VIDEO -->
 
         <video
             class="heart-video"
             id="heartVideo"
-            src="realistic-heart.mp4"
+            src="230520.mp4"
             autoplay
             muted
             loop
@@ -523,7 +506,7 @@ body::before{
 
 
 
-        <!-- TEXT OVER HEART -->
+        <!-- MESSAGE -->
 
         <div class="message">
 
@@ -594,7 +577,6 @@ body::before{
 
         </div>
 
-
     </div>
 
 </div>
@@ -626,7 +608,6 @@ function openHeart(){
     });
 
 }
-
 
 
 function closeHeart(){
