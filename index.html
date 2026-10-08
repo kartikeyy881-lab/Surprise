@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#17100e">
+
+  <title>A Little Surprise 💍</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      background: #111;
+      color: white;
+    }
+
+    /* BACKGROUND */
+    .background {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background-image:
+        linear-gradient(
+          rgba(0, 0, 0, 0.10),
+          rgba(0, 0, 0, 0.18)
+        ),
+        url("file_0000000089cc8208beb6b4955f2e9ede.png");
+
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      transform: scale(1.02);
+      z-index: 0;
+    }
+
+    /* Very subtle cinematic overlay */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(
+          circle at 50% 35%,
+          rgba(255, 220, 180, 0.08),
+          transparent 42%
+        ),
+        linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.04),
+          rgba(0, 0, 0, 0.18)
+        );
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* SMALL INTRO TEXT */
+    .hint {
+      position: fixed;
+      top: 8%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+
+      color: rgba(255, 255, 255, 0.92);
+      font-size: clamp(14px, 3.5vw, 19px);
+      letter-spacing: 2px;
+      text-align: center;
+      white-space: nowrap;
+
+      text-shadow:
+        0 2px 12px rgba(0, 0, 0, 0.75);
+
+      animation: hintFade 4s ease-in-out infinite;
+    }
+
+    @keyframes hintFade {
+      0%, 100% {
+        opacity: 0.45;
+      }
+
+      50% {
+        opacity: 1;
+      }
+    }
+
+    /* RING AREA */
+    .ring-button {
+      position: fixed;
+      left: 50%;
+      top: 30%;
+
+      width: 105px;
+      height: 105px;
+
+      transform: translate(-50%, -50%);
+      z-index: 5;
+
+      border: none;
+      background: transparent;
+      cursor: pointer;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Outer glow */
+    .ring-glow {
+      position: absolute;
+      width: 78px;
+      height: 78px;
+      border-radius: 50%;
+
+      background: rgba(255, 223, 178, 0.10);
+
+      box-shadow:
+        0 0 12px rgba(255, 220, 170, 0.45),
+        0 0 30px rgba(255, 210, 150, 0.30),
+        0 0 55px rgba(255, 200, 130, 0.18);
+
+      animation: ringGlow 2.1s ease-in-out infinite;
+    }
+
+    @keyframes ringGlow {
+      0%, 100% {
+        transform: scale(0.82);
+        opacity: 0.55;
+      }
+
+      50% {
+        transform: scale(1.18);
+        opacity: 1;
+      }
+    }
+
+    /* Ring illustration */
+    .ring {
+      position: relative;
+      width: 70px;
+      height: 78px;
+
+      filter:
+        drop-shadow(0 5px 9px rgba(0, 0, 0, 0.65))
+        drop-shadow(0 0 9px rgba(255, 225, 185, 0.75));
+
+      animation: ringFloat 2.8s ease-in-out infinite;
+    }
+
+    @keyframes ringFloat {
+      0%, 100% {
+        transform: translateY(0) rotate(-2deg);
+      }
+
+      50% {
+        transform: translateY(-7px) rotate(2deg);
+      }
+    }
+
+    /* Ring band */
+    .band {
+      position: absolute;
+      left: 12px;
+      bottom: 2px;
+
+      width: 46px;
+      height: 48px;
+
+      border: 8px solid #d8b77c;
+      border-top-color: #f6dfaa;
+      border-right-color: #c59c5d;
+
+      border-radius: 50%;
+      transform: rotate(3deg);
+
+      box-shadow:
+        inset 2px 2px 3px rgba(255,255,255,0.7),
+        0 2px 4px rgba(0,0,0,0.35);
+    }
+
+    /* Ring setting */
+    .setting {
+      position: absolute;
+      left: 23px;
+      top: 21px;
+
+      width: 25px;
+      height: 18px;
+
+      background: linear-gradient(
+        135deg,
+        #f7dfa9,
+        #b88945
+      );
+
+      border-radius: 5px 5px 9px 9px;
+      transform: rotate(2deg);
+
+      box-shadow:
+        0 2px 4px rgba(0,0,0,0.4);
+    }
+
+    /* Diamond */
+    .diamond {
+      position: absolute;
+      left: 23px;
+      top: 4px;
+
+      width: 27px;
+      height: 27px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #ffffff 0%,
+          #d9f2ff 28%,
+          #ffffff 48%,
+          #b8d9e9 70%,
+          #ffffff 100%
+        );
+
+      clip-path: polygon(
+        50% 0%,
+        88% 25%,
+        72% 100%,
+        28% 100%,
+        12% 25%
+      );
+
+      filter:
+        drop-shadow(0 0 5px rgba(255,255,255,0.95));
+
+      animation: diamondShine 1.8s ease-in-out infinite;
+    }
+
+    @keyframes diamondShine {
+      0%, 100% {
+        filter:
+          brightness(1)
+          drop-shadow(0 0 4px rgba(255,255,255,0.7));
+      }
+
+      50% {
+        filter:
+          brightness(1.45)
+          drop-shadow(0 0 12px rgba(255,255,255,1));
+      }
+    }
+
+    /* Tiny sparkles */
+    .sparkle {
+      position: absolute;
+      color: white;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      text-shadow: 0 0 8px white;
+      animation: sparkle 1.8s ease-in-out infinite;
+    }
+
+    .s1 {
+      top: 8px;
+      right: 5px;
+      animation-delay: 0.2s;
+    }
+
+    .s2 {
+      bottom: 20px;
+      left: 0;
+      font-size: 11px;
+      animation-delay: 0.8s;
+    }
+
+    .s3 {
+      top: 30px;
+      right: -8px;
+      font-size: 9px;
+      animation-delay: 1.1s;
+    }
+
+    @keyframes sparkle {
+      0%, 100% {
+        opacity: 0.1;
+        transform: scale(0.5) rotate(0deg);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1.25) rotate(45deg);
+      }
+    }
+
+    /* =========================
+       POPUP
+       ========================= */
+
+    .popup {
+      position: fixed;
+      inset: 0;
+
+      z-index: 20;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 25px;
+
+      background: rgba(0, 0, 0, 0.60);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+
+      opacity: 0;
+      visibility: hidden;
+
+      transition:
+        opacity 0.45s ease,
+        visibility 0.45s ease;
+    }
+
+    .popup.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Heart container */
+    .heart-container {
+      position: relative;
+
+      width: min(330px, 82vw);
+      height: min(390px, 88vw);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      transform: scale(0.72);
+      opacity: 0;
+
+      transition:
+        transform 0.6s cubic-bezier(.17,.89,.32,1.28),
+        opacity 0.45s ease;
+    }
+
+    .popup.active .heart-container {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    /*
+      Anatomical-inspired heart silhouette.
+      This is intentionally more natural/organic than a ❤️ emoji.
+    */
+    .heart {
+      position: absolute;
+      width: 245px;
+      height: 285px;
+
+      background:
+        radial-gradient(
+          circle at 34% 28%,
+          rgba(255, 160, 160, 0.65),
+          transparent 20%
+        ),
+        radial-gradient(
+          circle at 67% 36%,
+          rgba(100, 0, 15, 0.35),
+          transparent 25%
+        ),
+        linear-gradient(
+          145deg,
+          #a90028,
+          #790018 48%,
+          #4d0012
+        );
+
+      border-radius:
+        47% 53% 43% 55%
+        /
+        48% 46% 54% 52%;
+
+      transform:
+        rotate(-7deg)
+        skewY(-4deg);
+
+      box-shadow:
+        inset -18px -22px 30px rgba(35,0,8,0.45),
+        inset 15px 10px 22px rgba(255,100,110,0.22),
+        0 25px 55px rgba(0,0,0,0.65);
+
+      overflow: hidden;
+    }
+
+    /* Natural heart grooves */
+    .heart::before {
+      content: "";
+      position: absolute;
+
+      width: 65px;
+      height: 250px;
+
+      left: 90px;
+      top: 15px;
+
+      border-left: 4px solid rgba(35,0,10,0.45);
+      border-radius: 50%;
+
+      transform: rotate(11deg);
+    }
+
+    .heart::after {
+      content: "";
+      position: absolute;
+
+      width: 125px;
+      height: 100px;
+
+      left: 48px;
+      top: 60px;
+
+      border-top: 3px solid rgba(255,150,150,0.22);
+      border-radius: 50%;
+
+      transform: rotate(-18deg);
+    }
+
+    /* Heart vessels */
+    .vessel {
+      position: absolute;
+      z-index: 2;
+
+      background:
+        linear-gradient(
+          90deg,
+          #630015,
+          #a9002d,
+          #630015
+        );
+
+      border-radius: 50%;
+      box-shadow:
+        inset 2px 2px 4px rgba(255,120,120,0.22);
+    }
+
+    .vessel.one {
+      width: 34px;
+      height: 85px;
+      top: -36px;
+      left: 78px;
+      transform: rotate(-18deg);
+    }
+
+    .vessel.two {
+      width: 30px;
+      height: 72px;
+      top: -28px;
+      left: 137px;
+      transform: rotate(15deg);
+    }
+
+    .vessel.three {
+      width: 24px;
+      height: 65px;
+      top: -22px;
+      left: 167px;
+      transform: rotate(27deg);
+    }
+
+    /* Message on heart */
+    .heart-message {
+      position: relative;
+      z-index: 5;
+
+      width: 190px;
+
+      color: #fff5f1;
+
+      text-align: center;
+
+      text-shadow:
+        0 2px 7px rgba(50,0,5,0.75);
+
+      transform: rotate(-2deg);
+    }
+
+    .heart-message .small {
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+
+      opacity: 0.85;
+
+      margin-bottom: 14px;
+    }
+
+    .heart-message .main {
+      font-size: 24px;
+      line-height: 1.35;
+      font-style: italic;
+    }
+
+    .heart-message .tiny {
+      margin-top: 16px;
+
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+
+      opacity: 0.75;
+    }
+
+    /* Close button */
+    .close {
+      position: absolute;
+      top: 22px;
+      right: 22px;
+
+      width: 42px;
+      height: 42px;
+
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 50%;
+
+      background: rgba(0,0,0,0.25);
+      color: white;
+
+      font-size: 25px;
+      font-weight: 300;
+
+      cursor: pointer;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      z-index: 30;
+    }
+
+    .close:active {
+      transform: scale(0.9);
+    }
+
+    /* Bottom text */
+    .bottom-note {
+      position: fixed;
+      bottom: 6%;
+      left: 50%;
+      transform: translateX(-50%);
+
+      z-index: 4;
+
+      width: 90%;
+
+      text-align: center;
+
+      color: rgba(255,255,255,0.85);
+
+      font-size: 13px;
+      letter-spacing: 1.5px;
+
+      text-shadow:
+        0 2px 10px rgba(0,0,0,0.8);
+
+      animation: bottomFade 3s ease-in-out infinite;
+    }
+
+    @keyframes bottomFade {
+      0%, 100% {
+        opacity: 0.45;
+      }
+
+      50% {
+        opacity: 0.9;
+      }
+    }
+
+    /* Mobile adjustment */
+    @media (max-width: 480px) {
+      .hint {
+        top: 7%;
+      }
+
+      .ring-button {
+        top: 31%;
+      }
+
+      .heart-container {
+        width: 310px;
+        height: 370px;
+      }
+
+      .heart {
+        width: 225px;
+        height: 265px;
+      }
+
+      .bottom-note {
+        bottom: 5%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Background -->
+  <div class="background"></div>
+  <div class="overlay"></div>
+
+  <!-- Intro -->
+  <div class="hint">
+    something special is waiting...
+  </div>
+
+  <!-- Ring -->
+  <button class="ring-button" id="ringButton" aria-label="Open the surprise">
+
+    <div class="ring-glow"></div>
+
+    <div class="ring">
+
+      <div class="sparkle s1">✦</div>
+      <div class="sparkle s2">✦</div>
+      <div class="sparkle s3">✦</div>
+
+      <div class="band"></div>
+      <div class="setting"></div>
+      <div class="diamond"></div>
+
+    </div>
+
+  </button>
+
+  <div class="bottom-note">
+    tap the ring 💍
+  </div>
+
+
+  <!-- POPUP -->
+  <div class="popup" id="popup">
+
+    <button class="close" id="closeButton" aria-label="Close">
+      ×
+    </button>
+
+    <div class="heart-container">
+
+      <div class="heart">
+
+        <div class="vessel one"></div>
+        <div class="vessel two"></div>
+        <div class="vessel three"></div>
+
+      </div>
+
+      <!-- MESSAGE -->
+      <div class="heart-message">
+
+        <div class="small">
+          from the heart
+        </div>
+
+        <div class="main">
+          A little surprise<br>
+          is waiting here...
+        </div>
+
+        <div class="tiny">
+          ❤️
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <script>
+
+    const ringButton = document.getElementById("ringButton");
+    const popup = document.getElementById("popup");
+    const closeButton = document.getElementById("closeButton");
+
+    ringButton.addEventListener("click", () => {
+      popup.classList.add("active");
+    });
+
+    closeButton.addEventListener("click", () => {
+      popup.classList.remove("active");
+    });
+
+    popup.addEventListener("click", (event) => {
+      if (event.target === popup) {
+        popup.classList.remove("active");
+      }
+    });
+
+  </script>
+
+</body>
+  </html>
