@@ -4,555 +4,310 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Shreyas Randii Khana.com</title>
+<title>Surprise for Jesiii 💗</title>
 
 <style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-html,body{
-    width:100%;
-    height:100%;
-    overflow:hidden;
-    font-family:Georgia,"Times New Roman",serif;
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
 }
 
-body{
-    background:#000 url("file_0000000089cc8208beb6b4955f2e9ede.png")
-    center center/cover no-repeat fixed;
+body {
+    background-image: url("file_0000000089cc8208beb6b4955f2e9ede.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-/* DARK OVERLAY */
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.12);
-    z-index:0;
+/* Dark transparent layer */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.18);
+    z-index: 0;
 }
 
-/* MAIN SCREEN */
-.main-screen{
-    position:relative;
-    width:100%;
-    height:100%;
-    z-index:1;
+/* Main screen */
+.main {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-/* TITLE */
-.title{
-    position:absolute;
-    top:7%;
-    left:50%;
-    transform:translateX(-50%);
-    color:#fff;
-    font-size:clamp(18px,5vw,30px);
-    letter-spacing:3px;
-    text-align:center;
-    white-space:nowrap;
-    text-shadow:0 2px 15px #000;
+/* Website title */
+.title {
+    position: absolute;
+    top: 10%;
+    width: 100%;
+    text-align: center;
+
+    color: white;
+    font-size: clamp(25px, 7vw, 48px);
+    font-weight: 300;
+    letter-spacing: 1px;
+
+    text-shadow:
+        0 0 8px rgba(255,255,255,0.7),
+        0 0 18px rgba(255,120,170,0.7);
 }
 
-/* RING */
-.ring-button{
-    position:absolute;
-    left:50%;
-    top:38%;
-    transform:translate(-50%,-50%);
+/* Glowing ring */
+.ring {
+    width: 145px;
+    height: 145px;
 
-    width:92px;
-    height:92px;
-    border-radius:50%;
-
-    border:7px solid rgba(245,220,235,.95);
+    border-radius: 50%;
+    border: 3px solid rgba(255,255,255,0.9);
 
     box-shadow:
-        0 0 12px rgba(255,220,240,.95),
-        0 0 30px rgba(255,150,210,.8),
-        0 0 65px rgba(255,120,190,.55);
+        0 0 15px rgba(255,255,255,0.8),
+        0 0 35px rgba(255,90,150,0.7),
+        inset 0 0 25px rgba(255,90,150,0.4);
 
-    cursor:pointer;
-    z-index:5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    animation:ringPulse 2s infinite;
+    cursor: pointer;
+
+    animation: pulse 2s infinite ease-in-out;
 }
 
-.ring-button::before{
-    content:"";
-    position:absolute;
-    width:38px;
-    height:38px;
-    border:5px solid #fff;
-    border-radius:50%;
-    left:20px;
-    top:23px;
-    box-shadow:0 0 15px #fff;
+.ring-text {
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    text-shadow: 0 0 10px white;
 }
 
-.ring-button::after{
-    content:"✦";
-    position:absolute;
-    color:white;
-    font-size:26px;
-    left:31px;
-    top:-5px;
-    text-shadow:0 0 15px white;
-}
-
-@keyframes ringPulse{
-    0%,100%{
-        transform:translate(-50%,-50%) scale(1);
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow:
+            0 0 15px rgba(255,255,255,0.8),
+            0 0 35px rgba(255,90,150,0.7);
     }
 
-    50%{
-        transform:translate(-50%,-50%) scale(1.1);
+    50% {
+        transform: scale(1.08);
+        box-shadow:
+            0 0 25px rgba(255,255,255,1),
+            0 0 55px rgba(255,90,150,0.9);
     }
 }
 
-/* TAP TEXT */
-.tap-text{
-    position:absolute;
-    top:48%;
-    left:50%;
-    transform:translateX(-50%);
+/* Popup */
+.popup {
+    position: fixed;
+    inset: 0;
 
-    color:white;
-    font-size:15px;
-    letter-spacing:2px;
-    text-shadow:0 2px 10px #000;
+    background: rgba(0,0,0,0.62);
 
-    z-index:4;
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 10;
+
+    padding: 20px;
 }
 
-
-/* =========================
-       HEART POPUP
-========================= */
-
-.popup{
-    position:fixed;
-    inset:0;
-
-    display:none;
-    align-items:center;
-    justify-content:center;
-
-    padding:12px;
-
-    background:rgba(5,2,7,.78);
-
-    backdrop-filter:blur(7px);
-    -webkit-backdrop-filter:blur(7px);
-
-    z-index:20;
+.popup.active {
+    display: flex;
 }
 
-.popup.active{
-    display:flex;
-}
+/* Popup box */
+.popup-box {
+    width: min(92vw, 430px);
+    max-height: 90vh;
 
+    border-radius: 25px;
 
-/* POPUP BOX */
+    overflow: hidden;
 
-.popup-box{
-    position:relative;
+    position: relative;
 
-    width:min(94vw,650px);
-    height:min(92vh,850px);
+    background: rgba(255,255,255,0.10);
+    backdrop-filter: blur(8px);
 
-    overflow:hidden;
-
-    border-radius:28px;
-
-    background:#080308;
-
-    border:1px solid rgba(255,190,220,.5);
+    border: 1px solid rgba(255,255,255,0.35);
 
     box-shadow:
-        0 0 40px rgba(255,100,180,.3),
-        0 20px 70px rgba(0,0,0,.9);
+        0 0 30px rgba(255,90,150,0.5),
+        0 0 80px rgba(0,0,0,0.7);
+
+    display: flex;
+    flex-direction: column;
 }
 
+/* Heart video */
+.heart-area {
+    width: 100%;
+    height: 270px;
 
-/* =========================
-        HEART VIDEO
-========================= */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-.heart-video{
-    position:absolute;
-
-    inset:0;
-
-    width:100%;
-    height:100%;
-
-    object-fit:contain;
-
-    background:#050205;
-
-    z-index:0;
-
-    /*
-      This helps dark/black areas of
-      the video blend into the popup.
-    */
-    mix-blend-mode:screen;
-
-    filter:
-        brightness(1.12)
-        contrast(1.08)
-        saturate(1.15);
+    background: rgba(0,0,0,0.25);
 }
 
+.heart-video {
+    width: 100%;
+    height: 100%;
 
-/* DARK GRADIENT OVER HEART */
+    object-fit: contain;
 
-.popup-box::before{
-    content:"";
-
-    position:absolute;
-    inset:0;
-
-    background:
-        linear-gradient(
-            to bottom,
-            rgba(0,0,0,.08) 0%,
-            rgba(0,0,0,.12) 40%,
-            rgba(0,0,0,.52) 100%
-        );
-
-    z-index:1;
-
-    pointer-events:none;
+    mix-blend-mode: screen;
 }
 
+/* Message */
+.message {
+    margin: 15px;
 
-/* MESSAGE PANEL */
+    padding: 18px;
 
-.message-panel{
-    position:absolute;
+    border-radius: 18px;
 
-    z-index:3;
+    background: rgba(105, 70, 85, 0.55);
 
-    left:6%;
-    right:6%;
-    bottom:5%;
+    color: white;
 
-    max-height:48%;
+    font-size: 15px;
+    line-height: 1.7;
 
-    padding:18px 18px;
+    text-align: left;
 
-    overflow-y:auto;
+    overflow-y: auto;
 
-    border-radius:22px;
+    max-height: 330px;
 
-    /*
-      IMPORTANT:
-      Transparent so the heart
-      remains visible behind it.
-    */
-    background:
-        linear-gradient(
-            145deg,
-            rgba(245,220,232,.72),
-            rgba(105,70,85,.58)
-        );
-
-    border:1px solid rgba(255,220,235,.6);
-
-    box-shadow:
-        0 8px 30px rgba(0,0,0,.55),
-        inset 0 0 20px rgba(255,255,255,.12);
-
-    color:#24131c;
-
-    text-align:center;
-
-    backdrop-filter:blur(3px);
-    -webkit-backdrop-filter:blur(3px);
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
 }
 
+/* Close button */
+.close {
+    position: absolute;
 
-/* SCROLLBAR */
+    top: 10px;
+    right: 12px;
 
-.message-panel::-webkit-scrollbar{
-    width:5px;
+    width: 35px;
+    height: 35px;
+
+    border-radius: 50%;
+
+    border: none;
+
+    background: rgba(0,0,0,0.45);
+
+    color: white;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    z-index: 20;
 }
 
-.message-panel::-webkit-scrollbar-thumb{
-    background:rgba(255,180,210,.8);
-    border-radius:10px;
-}
-
-
-/* MESSAGE TITLE */
-
-.message-title{
-    font-size:12px;
-    letter-spacing:4px;
-
-    color:#6d354f;
-
-    margin-bottom:10px;
-
-    font-weight:bold;
-}
-
-
-/* MESSAGE */
-
-.message{
-    font-size:clamp(14px,3.8vw,17px);
-
-    line-height:1.55;
-
-    color:#28151f;
-}
-
-.message .hello{
-    font-size:clamp(17px,4.5vw,22px);
-
-    color:#6c2849;
-
-    font-weight:bold;
-
-    margin-bottom:13px;
-}
-
-.message p{
-    margin-bottom:13px;
-}
-
-.message .highlight{
-    display:block;
-
-    margin:14px 0;
-
-    padding:10px 6px;
-
-    font-size:clamp(16px,4.2vw,20px);
-
-    font-style:italic;
-
-    color:#752b52;
-
-    border-top:1px solid rgba(117,43,82,.35);
-    border-bottom:1px solid rgba(117,43,82,.35);
-}
-
-
-/* SIGNATURE */
-
-.signature{
-    margin-top:14px;
-
-    font-family:cursive;
-
-    font-size:clamp(17px,4.7vw,23px);
-
-    color:#6c2949;
-}
-
-
-/* CLOSE BUTTON */
-
-.close-btn{
-    position:absolute;
-
-    right:14px;
-    top:14px;
-
-    width:43px;
-    height:43px;
-
-    border-radius:50%;
-
-    border:1px solid rgba(255,220,235,.8);
-
-    background:rgba(20,5,15,.7);
-
-    color:white;
-
-    font-size:23px;
-
-    cursor:pointer;
-
-    z-index:10;
-
-    box-shadow:
-        0 0 18px rgba(255,140,190,.45);
-}
-
-.close-btn:active{
-    transform:scale(.92);
-}
-
-
-/* MOBILE */
-
-@media(max-width:480px){
-
-    .title{
-        top:5%;
-        font-size:17px;
-        letter-spacing:2px;
-    }
-
-    .ring-button{
-        width:78px;
-        height:78px;
-    }
-
-    .ring-button::before{
-        width:31px;
-        height:31px;
-        left:17px;
-        top:19px;
-    }
-
-    .ring-button::after{
-        left:26px;
-    }
-
-    .tap-text{
-        top:47%;
-        font-size:13px;
-    }
-
-    .popup{
-        padding:8px;
-    }
-
-    .popup-box{
-        width:96vw;
-        height:94vh;
-        border-radius:23px;
-    }
-
-    .message-panel{
-        left:5%;
-        right:5%;
-        bottom:4%;
-
-        max-height:45%;
-
-        padding:16px 14px;
-    }
-
-    .message{
-        font-size:14px;
-        line-height:1.5;
-    }
+.close:hover {
+    background: rgba(255,255,255,0.25);
 }
 </style>
 </head>
 
-
 <body>
 
-<div class="main-screen">
+<div class="main">
 
     <div class="title">
-        something special is waiting...
+        Surprise for Jesiii 💗
     </div>
 
-    <div
-        class="ring-button"
-        onclick="openHeart()">
-    </div>
-
-    <div class="tap-text">
-        ✦ Tap the ring ✦
+    <div class="ring" onclick="openPopup()">
+        <div class="ring-text">
+            Tap here ✨
+        </div>
     </div>
 
 </div>
 
 
-<!-- HEART POPUP -->
+<!-- POPUP -->
 
-<div
-    class="popup"
-    id="heartPopup">
+<div class="popup" id="popup">
 
     <div class="popup-box">
 
-        <!-- CLOSE -->
-        <button
-            class="close-btn"
-            onclick="closeHeart()">
-            ×
-        </button>
+        <button class="close" onclick="closePopup()">×</button>
 
+        <div class="heart-area">
 
-        <!-- REALISTIC HEART VIDEO -->
+            <video
+                class="heart-video"
+                id="heartVideo"
+                src="realistic-heart.mp4"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="auto">
+            </video>
 
-        <video
-            class="heart-video"
-            id="heartVideo"
-            src="realistic-heart.mp4"
-            autoplay
-            muted
-            loop
-            playsinline
-            preload="auto">
-        </video>
+        </div>
 
+        <div class="message">
 
-        <!-- MESSAGE -->
+            Hello my "APNI" Supercalifraglisticexpelodics✨🫶🏻✨,
 
-        <div class="message-panel">
+            <br><br>
 
-            <div class="message-title">
-                FROM THE HEART
-            </div>
+            Mujhe pata hai, mai tumhe khush nhi rakh pata huu,
+            mujhe ye bhi pata hai ki meri habits ki wajah se tumhe
+            bhut baar hurt hota hai.
 
-            <div class="message">
+            <br><br>
 
-                <div class="hello">
-                    Hello my "APNI"<br>
-                    Supercalifraglisticexpelodics ✨🫶🏻✨
-                </div>
+            Aur iske liye mujhe tum maaf kar sako to please kar dena.
 
-                <p>
-                    Mujhe pata hai, mai tumhe khush nhi rakh pata huu,
-                    mujhe ye bhi pata hai ki meri habits ki wajah se
-                    tumhe bhut baar hurt hota hai.
-                </p>
+            <br><br>
 
-                <p>
-                    Aur iske liye mujhe tum maaf kar sako to please
-                    kar dena.
-                </p>
+            But kasam se bata rha huu, mai hamesha tumhara accha hii
+            chahta huu, tum bass khush rahoo, aur uss khushi ka yek
+            karan mai bhi ban saku, bass itna hi chahta huuu..
 
-                <p>
-                    But kasam se bata rha huu, mai hamesha tumhara
-                    accha hii chahta huu, tum bass khush rahoo,
-                    aur uss khushi ka yek karan mai bhi ban saku,
-                    bass itna hi chahta huuu..
-                </p>
+            <br><br>
 
-                <p>
-                    Ummid h tum meri sari galtiyoo aur bad habits k liye
-                    mujhe maaf kar dogii.
-                </p>
+            Ummid h tum meri sari galtiyoo aur bad habits k liye
+            mujhe maaf kar dogii.
 
-                <span class="highlight">
-                    “Mai hamesha,, thume kush dekhna hi nhi balki
-                    kush rakhna bhi chahta huuu...🫠🙂.”
-                </span>
+            <br><br>
 
-                <p>
-                    Yakeen hai tum kabhi iss baat ko jaroor samajh jaoogi🙂
-                </p>
+            “Mai hamesha,, thume kush dekhna hi nhi balki kush
+            rakhna bhi chahta huuu...🫠🙂.”
 
-                <div class="signature">
-                    A Confession note from your 'GADHAA' ❤️
-                </div>
+            <br><br>
 
-            </div>
+            Yakeen hai tum kabhi iss baat ko jaroor samajh jaoogi🙂
+
+            <br><br>
+
+            <b>A Confession note from your 'GADHAA' 🫠</b>
 
         </div>
 
@@ -563,35 +318,25 @@ body::before{
 
 <script>
 
-function openHeart(){
+function openPopup() {
 
-    const popup =
-        document.getElementById("heartPopup");
+    document.getElementById("popup").classList.add("active");
 
-    const video =
-        document.getElementById("heartVideo");
-
-    popup.classList.add("active");
+    const video = document.getElementById("heartVideo");
 
     video.currentTime = 0;
+    video.play().catch(() => {});
 
-    video.play().catch(function(){
-        console.log("Video autoplay waiting for interaction.");
-    });
 }
 
+function closePopup() {
 
-function closeHeart(){
+    document.getElementById("popup").classList.remove("active");
 
-    const popup =
-        document.getElementById("heartPopup");
-
-    const video =
-        document.getElementById("heartVideo");
-
-    popup.classList.remove("active");
+    const video = document.getElementById("heartVideo");
 
     video.pause();
+
 }
 
 </script>
